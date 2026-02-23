@@ -21,15 +21,21 @@ public class MovieController {
         return "index";
     }
 
+    @GetMapping("/movies")
+    public String showMovieList(Model model) {
+        model.addAttribute("movies", movieService.getAllMovies());
+        return "list";
+    }
+
     @GetMapping("/movies/add")
     public String showAddForm(Model model) {
         model.addAttribute("movie", new Movie());
-        return "add-movie";
+        return "formPage";
     }
 
     @PostMapping("/movies/save")
     public String saveMovie(@Valid @ModelAttribute Movie movie, BindingResult result) {
-        if (result.hasErrors()) return "add-movie";
+        if (result.hasErrors()) return "formPage";
         movieService.saveMovie(movie);
         return "redirect:/movies";
     }
@@ -39,12 +45,14 @@ public class MovieController {
         Movie movie = movieService.getMovieById(id);
         if (movie == null) return "redirect:/movies";
         model.addAttribute("movie", movie);
-        return "edit-movie";
+        return "formPage";
     }
 
     @GetMapping("/movies/delete/{id}")
     public String deleteMovie(@PathVariable int id) {
         movieService.deleteMovie(id);
         return "redirect:/movies";
+
+
     }
 }

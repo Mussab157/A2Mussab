@@ -21,17 +21,17 @@ public class Movie {
     @NotBlank
     private String genre;
 
-    @NotBlank
+
     private int date;
     private int rating;
 
     @NotBlank
     private String director;
 
-    @NotBlank
+
     private int durationMinutes;
 
-    @NotBlank
+
 
     public Movie() {
     }

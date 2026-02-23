@@ -31,9 +31,8 @@ public class MovieService {
     }
 
     public Movie getMovieById(int id) {
-        // Check if the movie exists in the database first
+
         if (movieRepo.existsById(id)) {
-            // If it exists, return the movie object
             return movieRepo.findById(id).get();
         }
         // If it doesn't exist, return null
