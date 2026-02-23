@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class MovieController {
     private final MovieService movieService;
@@ -31,6 +33,27 @@ public class MovieController {
     public String showAddForm(Model model) {
         model.addAttribute("movie", new Movie());
         return "formPage";
+    }
+
+    @GetMapping("/movies/search")
+    public String searchMovies(@RequestParam(required = false) String title,
+                               @RequestParam(required = false) String genre,
+                               Model model) {
+
+        List<Movie> results;
+
+        if (title != null && !title.isEmpty()) {
+            results = movieService.searchByTitle(title);
+        } else if (genre != null && !genre.isEmpty()) {
+            results = movieService.searchByGenre(genre);
+        } else {
+            results = movieService.getAllMovies();
+        }
+
+        model.addAttribute("movies", results);
+        model.addAttribute("title", title);
+        model.addAttribute("genre", genre);
+        return "list";
     }
 
     @PostMapping("/movies/save")

@@ -3,7 +3,9 @@ package com.example.a2mussab.service;
 
 import com.example.a2mussab.data.MovieRepo;
 import com.example.a2mussab.model.Movie;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -37,6 +39,15 @@ public class MovieService {
         }
         // If it doesn't exist, return null
         return null;
+    }
+
+
+
+    @PostConstruct
+    public void loadDefaultMovies() {
+        if (movieRepo.count() == 0) {
+            movieRepo.saveAll(Movie.getDefaultMovies());
+        }
     }
 
     public void deleteMovie(Movie movie)
