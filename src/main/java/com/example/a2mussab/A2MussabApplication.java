@@ -10,4 +10,6 @@ public class A2MussabApplication {
         SpringApplication.run(A2MussabApplication.class, args);
     }
 
+
+
 }

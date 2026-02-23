@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import org.jspecify.annotations.NonNull;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+
 
 @Entity
 public class Movie {
@@ -42,6 +44,24 @@ public class Movie {
         this.rating = rating;
         this.director = director;
         this.durationMinutes = durationMinutes;
+    }
+
+    public Movie(String title, String genre, int date, int rating, String director, int durationMinutes) {
+        this.title = title;
+        this.genre = genre;
+        this.date = date;
+        this.rating = rating;
+        this.director = director;
+        this.durationMinutes = durationMinutes;
+    }
+
+    // Inside Movie.java
+    public static List<Movie> getDefaultMovies() {
+        return List.of(
+                new Movie("Inception", "Sci-Fi", 2010, 9, "Christopher Nolan", 148),
+                new Movie("The Dark Knight", "Action", 2008, 10, "Christopher Nolan", 152),
+                new Movie("Interstellar", "Sci-Fi", 2014, 9, "Christopher Nolan", 169)
+        );
     }
 
 
