@@ -1,14 +1,38 @@
 package com.example.a2mussab.model;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import org.jspecify.annotations.NonNull;
+import jakarta.validation.constraints.NotBlank;
 
 
+@Entity
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String genre;
+
+    @NotBlank
     private int date;
     private int rating;
+
+    @NotBlank
     private String director;
+
+    @NotBlank
     private int durationMinutes;
+
+    @NotBlank
+
+    public Movie() {
+    }
 
     public Movie(int id, String title, String genre, int date, int rating, String director, int durationMinutes) {
         this.id = id;
@@ -20,8 +44,7 @@ public class Movie {
         this.durationMinutes = durationMinutes;
     }
 
-    public Movie() {
-    }
+
 
     public int getId() {
         return id;
