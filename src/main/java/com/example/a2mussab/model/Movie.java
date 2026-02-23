@@ -3,6 +3,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import org.jspecify.annotations.NonNull;
 import jakarta.validation.constraints.NotBlank;
 
@@ -22,7 +24,12 @@ public class Movie {
     private String genre;
 
 
+    @Min(value = 1800, message = "min value should be 1800")
+    @Max(value = 2026, message = "max value should be current year")
     private int date;
+
+    @Min(value = 0)
+    @Max(value = 10)
     private int rating;
 
     @NotBlank
